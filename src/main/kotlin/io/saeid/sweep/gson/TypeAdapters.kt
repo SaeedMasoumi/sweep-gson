@@ -16,11 +16,12 @@ internal interface SweepTypeAdapterFactory : TypeAdapterFactory {
         return create(gson, type, delegate, elementAdapter, type)
     }
 
-    fun <T> create(gson: Gson,
-                   type: TypeToken<T>,
-                   delegate: TypeAdapter<T>,
-                   elementAdapter: TypeAdapter<JsonElement>,
-                   rawType: TypeToken<T>
+    fun <T> create(
+        gson: Gson,
+        type: TypeToken<T>,
+        delegate: TypeAdapter<T>,
+        elementAdapter: TypeAdapter<JsonElement>,
+        rawType: TypeToken<T>
     ): SweepTypeAdapter<T>
 }
 
@@ -28,10 +29,10 @@ internal interface SweepTypeAdapterFactory : TypeAdapterFactory {
  * Default implementation of [TypeAdapter] to pass reading and writing to the delegated adapter.
  */
 internal abstract class SweepTypeAdapter<T>(
-        protected val gson: Gson,
-        protected val delegate: TypeAdapter<T>,
-        protected val elementAdapter: TypeAdapter<JsonElement>,
-        protected val type: TypeToken<T>
+    protected val gson: Gson,
+    protected val delegate: TypeAdapter<T>,
+    protected val elementAdapter: TypeAdapter<JsonElement>,
+    protected val type: TypeToken<T>
 ) : TypeAdapter<T>() {
 
     override fun write(out: JsonWriter, value: T) {

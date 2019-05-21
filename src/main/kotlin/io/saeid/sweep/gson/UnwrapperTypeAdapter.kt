@@ -8,13 +8,13 @@ import com.google.gson.stream.JsonReader
 import io.saeid.sweep.gson.SweepReflection.sweepUnwrapperValue
 
 internal class UnwrapperTypeAdapter<T>(
-        gson: Gson,
-        delegate: TypeAdapter<T>,
-        elementAdapter: TypeAdapter<JsonElement>,
-        type: TypeToken<T>,
-        private val defaultUnwrapper: DefaultUnwrapper
+    gson: Gson,
+    delegate: TypeAdapter<T>,
+    elementAdapter: TypeAdapter<JsonElement>,
+    type: TypeToken<T>,
+    private val defaultUnwrapper: DefaultUnwrapper
 ) :
-        SweepTypeAdapter<T>(gson, delegate, elementAdapter, type) {
+    SweepTypeAdapter<T>(gson, delegate, elementAdapter, type) {
 
     override fun read(`in`: JsonReader): T {
         val jsonElement = unwrap(elementAdapter.read(`in`))
@@ -37,8 +37,8 @@ internal class UnwrapperTypeAdapter<T>(
         if (defaultUnwrapper.force() && !sweepUnwrapperEnabled) {
             if (defaultNames.isNullOrEmpty())
                 throw IllegalStateException(
-                        "default unwrapper is forced but nothing provided." +
-                                " Try to implement find() method"
+                    "default unwrapper is forced but nothing provided." +
+                            " Try to implement find() method"
                 )
             return makeUnwrapperNames(defaultNames)
         }
@@ -73,8 +73,8 @@ internal class UnwrapperTypeAdapter<T>(
     }
 
     private fun hasSweepUnwrapperAnnotation() = SweepReflection.isAnnotationPresent(
-            type.rawType,
-            SweepUnwrapper::class.java
+        type.rawType,
+        SweepUnwrapper::class.java
     )
 
     private fun getUnwrapperNameFromAnnotation(): String {

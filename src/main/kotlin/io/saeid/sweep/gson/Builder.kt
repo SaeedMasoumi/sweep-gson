@@ -33,27 +33,29 @@ class Builder internal constructor(private val gsonBuilder: GsonBuilder) {
     fun build(): GsonBuilder {
 
         val wrapperTypeAdapterFactory = object : SweepTypeAdapterFactory {
-            override fun <T> create(gson: Gson,
-                                    type: TypeToken<T>,
-                                    delegate: TypeAdapter<T>,
-                                    elementAdapter: TypeAdapter<JsonElement>,
-                                    rawType: TypeToken<T>
+            override fun <T> create(
+                gson: Gson,
+                type: TypeToken<T>,
+                delegate: TypeAdapter<T>,
+                elementAdapter: TypeAdapter<JsonElement>,
+                rawType: TypeToken<T>
             ) =
-                    WrapperTypeAdapter(
-                            gson, delegate, elementAdapter, rawType, defaultWrapper
-                    )
+                WrapperTypeAdapter(
+                    gson, delegate, elementAdapter, rawType, defaultWrapper
+                )
         }
 
         val unwrapperTypeAdapterFactory = object : SweepTypeAdapterFactory {
-            override fun <T> create(gson: Gson,
-                                    type: TypeToken<T>,
-                                    delegate: TypeAdapter<T>,
-                                    elementAdapter: TypeAdapter<JsonElement>,
-                                    rawType: TypeToken<T>
+            override fun <T> create(
+                gson: Gson,
+                type: TypeToken<T>,
+                delegate: TypeAdapter<T>,
+                elementAdapter: TypeAdapter<JsonElement>,
+                rawType: TypeToken<T>
             ) =
-                    UnwrapperTypeAdapter(
-                            gson, delegate, elementAdapter, rawType, defaultUnwrapper
-                    )
+                UnwrapperTypeAdapter(
+                    gson, delegate, elementAdapter, rawType, defaultUnwrapper
+                )
         }
 
         gsonBuilder.registerTypeAdapterFactory(wrapperTypeAdapterFactory)

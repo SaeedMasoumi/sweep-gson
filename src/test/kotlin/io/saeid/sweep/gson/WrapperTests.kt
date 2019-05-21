@@ -70,9 +70,9 @@ class WrapperTests {
             defaultWrapper = createDefaultWrapper(USE_CLASS_NAME_WRAPPER)
         }.create()
         assertSerialized(
-                """{"root":{"name":"root","child":{"child":{"name":"sweep"}}}}""",
-                Root("root", mockChild),
-                USE_DEFAULT_WRAPPER
+            """{"root":{"name":"root","child":{"child":{"name":"sweep"}}}}""",
+            Root("root", mockChild),
+            USE_DEFAULT_WRAPPER
         )
     }
 

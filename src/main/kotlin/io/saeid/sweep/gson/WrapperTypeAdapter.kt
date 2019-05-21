@@ -9,11 +9,11 @@ import com.google.gson.stream.JsonWriter
 import io.saeid.sweep.gson.SweepReflection.*
 
 internal class WrapperTypeAdapter<T>(
-        gson: Gson,
-        delegate: TypeAdapter<T>,
-        elementAdapter: TypeAdapter<JsonElement>,
-        type: TypeToken<T>,
-        private val defaultWrapper: DefaultWrapper
+    gson: Gson,
+    delegate: TypeAdapter<T>,
+    elementAdapter: TypeAdapter<JsonElement>,
+    type: TypeToken<T>,
+    private val defaultWrapper: DefaultWrapper
 ) : SweepTypeAdapter<T>(gson, delegate, elementAdapter, type) {
 
     override fun write(out: JsonWriter, value: T) {
@@ -50,10 +50,10 @@ internal class WrapperTypeAdapter<T>(
             when (it) {
                 USE_DEFAULT_WRAPPER -> {
                     val defaultWrappers = defaultWrapper.find(value)?.trim()?.split(".")
-                            ?: throw IllegalStateException(
-                                    "$value forced to use default wrapper, but nothing provided." +
-                                            " Try to implement DefaultWrapper"
-                            )
+                        ?: throw IllegalStateException(
+                            "$value forced to use default wrapper, but nothing provided." +
+                                    " Try to implement DefaultWrapper"
+                        )
                     newNames.addAll(defaultWrappers)
                 }
                 else -> {
