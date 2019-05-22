@@ -23,21 +23,25 @@ internal class WrapperTypeAdapter<T>(
         out.beginObject()
 
         hooksDelegation.preSerialize(out, gson, value)
-        wrap(out, wrapperNames) {
-            delegate.write(out, value)
-        }
+
+        startWrapping(out, wrapperNames)
+        delegate.write(out, value)
+        endWrapping(out, wrapperNames)
 
         out.endObject()
     }
 
-    private inline fun wrap(out: JsonWriter, wrapperNames: List<String>, block: () -> Unit) {
-        val lastItem = wrapperNames.size - 1
-        wrapperNames.forEachIndexed { index, s ->
+    private fun startWrapping(out: JsonWriter, names: List<String>) {
+        val lastItem = names.size - 1
+        names.forEachIndexed { index, s ->
             out.name(s)
             if (index != lastItem)
                 out.beginObject()
         }
-        block()
+    }
+
+    private fun endWrapping(out: JsonWriter, names: List<String>) {
+        val lastItem = names.size - 1
         repeat(lastItem) { out.endObject() }
     }
 }

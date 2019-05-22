@@ -8,7 +8,7 @@ import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 
 /**
- * Default implementation of [TypeAdapter] to pass reading and writing to the delegated adapter.
+ * An implementation of [TypeAdapter] which passes (de)serializing to the delegated adapter.
  */
 internal abstract class SweepTypeAdapter<T>(
     protected val gson: Gson,

@@ -1,10 +1,12 @@
-package io.saeid.sweep.gson
+package io.saeid.sweep.gson.wrapper
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.mockk.every
 import io.mockk.mockkStatic
+import io.saeid.sweep.gson.*
 import io.saeid.sweep.gson.SweepReflection.sweepWrapperValue
+import io.saeid.sweep.gson.createDefaultWrapper
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -52,10 +54,13 @@ class WrapperTests {
     @Test
     fun `verify wrapping with three level depth using default wrapper`() {
         gson = GsonBuilder().withSweep {
-            defaultWrapper = createDefaultWrapper("request.$USE_CLASS_NAME_WRAPPER.reply")
+            defaultWrapper =
+                createDefaultWrapper("request.$USE_CLASS_NAME_WRAPPER.reply")
         }.create()
 
-        assertSerialized("""{"request":{"child":{"reply":{"name":"sweep"}}}}""", mockChild, USE_DEFAULT_WRAPPER)
+        assertSerialized("""{"request":{"child":{"reply":{"name":"sweep"}}}}""", mockChild,
+            USE_DEFAULT_WRAPPER
+        )
     }
 
     @Test(expected = IllegalStateException::class)

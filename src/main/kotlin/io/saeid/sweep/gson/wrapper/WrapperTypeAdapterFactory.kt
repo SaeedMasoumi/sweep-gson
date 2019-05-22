@@ -15,7 +15,7 @@ internal class WrapperTypeAdapterFactory(
     hooks: Hooks
 ) : SweepTypeAdapterFactory {
 
-    private val wrapperNameMapper = WrapperNamesBuilder(defaultWrapper)
+    private val wrapperNameBuilder = WrapperNamesBuilder(defaultWrapper)
     private val hooksDelegation = HooksDelegation(hooks)
 
     override fun <T> create(
@@ -25,7 +25,7 @@ internal class WrapperTypeAdapterFactory(
         elementAdapter: TypeAdapter<JsonElement>
     ): TypeAdapter<T> {
         if (isAnnotationPresent(type.rawType, SweepWrapper::class.java)) {
-            return WrapperTypeAdapter(gson, delegate, elementAdapter, type, wrapperNameMapper, hooksDelegation)
+            return WrapperTypeAdapter(gson, delegate, elementAdapter, type, wrapperNameBuilder, hooksDelegation)
         }
         return delegate
     }

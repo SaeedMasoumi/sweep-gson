@@ -8,9 +8,25 @@ import io.saeid.sweep.gson.SweepWrapper
 interface Hooks {
 
     /**
-     * Add given pair to the root of [value]. Currently, It only available when [value] is annotated with [SweepWrapper].
+     * Adds given pair to the root of [value] object. Currently, It only available when [value] is annotated with [SweepWrapper].
      *
-     * @return a json object contains it's name and value, null if you want to disable it.
+     * For example passing `Pair("prop","123")` for the below class
+     *
+     * ```
+     * @SweepJson("data")
+     * data class Foo(val name:String)
+     * ```
+     *
+     * will converts the final json to:
+     *
+     * {
+     *    "prop" : "123",
+     *    "data" : {
+     *         "name" : "string"
+     *    }
+     * }
+     * ```
+     * @return a pair containing a name and a value, null if you want to disable it.
      */
     fun <T> addToRoot(value: T): Pair<String, Any>? = null
 }

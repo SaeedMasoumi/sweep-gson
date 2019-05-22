@@ -7,7 +7,7 @@ import io.saeid.sweep.gson.USE_CLASS_NAME_WRAPPER
 import io.saeid.sweep.gson.USE_DEFAULT_WRAPPER
 
 /**
- * Builds a list of wrapper names based on [SweepWrapper.value].
+ * Builds a list of wrapper names, which will be used on [WrapperTypeAdapter], based on [SweepWrapper.value] or [DefaultWrapper.wrapWith].
  */
 internal class WrapperNamesBuilder(private val defaultWrapper: DefaultWrapper) {
 

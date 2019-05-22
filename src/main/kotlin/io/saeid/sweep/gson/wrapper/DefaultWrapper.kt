@@ -4,9 +4,8 @@ import io.saeid.sweep.gson.SweepWrapper
 import io.saeid.sweep.gson.USE_DEFAULT_WRAPPER
 
 /**
- * Finds a default wrapper name for a given class.
- * SweepGson will automatically switch to the default wrapper,
- * When [SweepWrapper.value] is [USE_DEFAULT_WRAPPER].
+ * Indicates that [SweepWrapper] must use [wrapWith] method to find out the wrapper names,
+ * when the [SweepWrapper.value] is set to [USE_DEFAULT_WRAPPER].
  */
 interface DefaultWrapper {
     fun <T> wrapWith(value: T): String?

@@ -4,11 +4,6 @@ import java.lang.annotation.Annotation;
 
 public class SweepReflection {
 
-    /**
-     * A helper function to check that data classes has an annotation or not.
-     * <p>
-     * It's written in Java because in Kotlin, we need to enable kotlin-reflect.
-     */
     public static <T, R extends Annotation> boolean isAnnotationPresent(T value, Class<R> annotation) {
         return value.getClass().isAnnotationPresent(annotation);
     }
@@ -27,5 +22,9 @@ public class SweepReflection {
 
     public static <T> String findClassName(T value) {
         return value.getClass().getSimpleName();
+    }
+
+    public static <T> String findClassName(Class<T> value) {
+        return value.getSimpleName();
     }
 }

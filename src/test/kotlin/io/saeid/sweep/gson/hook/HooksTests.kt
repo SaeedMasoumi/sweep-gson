@@ -1,11 +1,12 @@
-package io.saeid.sweep.gson
+package io.saeid.sweep.gson.hook
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.mockk.every
 import io.mockk.mockkStatic
+import io.saeid.sweep.gson.*
 import io.saeid.sweep.gson.SweepReflection.sweepWrapperValue
-import io.saeid.sweep.gson.hook.Hooks
+import io.saeid.sweep.gson.createDefaultWrapper
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

@@ -3,6 +3,7 @@ package io.saeid.sweep.gson
 data class NoAnnotation(val name: String)
 
 @SweepWrapper
+@SweepUnwrapper
 data class Child(val name: String)
 
 @SweepWrapper

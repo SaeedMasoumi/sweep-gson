@@ -1,10 +1,9 @@
-package io.saeid.sweep.gson
+package io.saeid.sweep.gson.wrapper
 
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
-import io.saeid.sweep.gson.wrapper.DefaultWrapper
-import io.saeid.sweep.gson.wrapper.WrapperNamesBuilder
+import io.saeid.sweep.gson.*
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -22,7 +21,7 @@ class WrapperNamesBuilderTests {
     }
 
     @Test
-    fun `verify wrapper names builder on different conditions`() {
+    fun `verify WrapperNamesBuilder on different conditions`() {
         assertBuilder(listOf("root"), USE_DEFAULT_WRAPPER)
         assertBuilder(listOf("child"), USE_CLASS_NAME_WRAPPER)
         assertBuilder(listOf("data"), "data")
@@ -34,9 +33,22 @@ class WrapperNamesBuilderTests {
         assertBuilder(listOf("a", "root", "b"), "a.$USE_DEFAULT_WRAPPER.b")
     }
 
-    private fun assertBuilder(expected: List<String>, sweepWrapperValue: String) {
+    @Test(expected = IllegalStateException::class)
+    fun `throw exception when value is not annotated with SweepWrapper`() {
+        assertBuilder(
+            listOf("root"),
+            USE_DEFAULT_WRAPPER,
+            NoAnnotation("someValue")
+        )
+    }
+
+    private fun assertBuilder(
+        expected: List<String>,
+        sweepWrapperValue: String,
+        value: Any = Child("sweep")
+    ) {
         every { SweepReflection.sweepWrapperValue<Child>(any()) } returns sweepWrapperValue
-        val actual = builder.build(Child("sweep"))
+        val actual = builder.build(value)
         assertEquals(expected, actual)
     }
 }
