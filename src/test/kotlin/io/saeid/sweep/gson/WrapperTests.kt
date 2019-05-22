@@ -82,20 +82,4 @@ class WrapperTests {
         val json = gson.toJson(value)
         assertEquals(expected, json)
     }
-
-    private fun createDefaultWrapper(name: String): DefaultWrapper {
-        return object : DefaultWrapper {
-            override fun <T> find(value: T): String? {
-                return name
-            }
-        }
-    }
 }
-
-private data class NoAnnotation(val name: String)
-
-@SweepWrapper
-private data class Child(val name: String)
-
-@SweepWrapper
-private data class Root(val name: String, val child: Child)

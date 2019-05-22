@@ -38,7 +38,7 @@ internal class UnwrapperTypeAdapter<T>(
             if (defaultNames.isNullOrEmpty())
                 throw IllegalStateException(
                     "default unwrapper is forced but nothing provided." +
-                            " Try to implement find() method"
+                            " Try to implement wrapWith() method"
                 )
             return makeUnwrapperNames(defaultNames)
         }
