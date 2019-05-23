@@ -38,8 +38,8 @@ jobs:
     - run: gradle bintrayUpload
 
     post-steps:
-      name: Upload artifacts to Jcenter
       - run:
+        name: Upload artifacts to Jcenter
         command: gradle bintrayUpload
 
 
