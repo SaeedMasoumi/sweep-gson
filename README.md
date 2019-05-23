@@ -3,7 +3,28 @@
 
 A wrapper/unwrapper extension for Gson
 
+- [Sweep Gson](#sweep-gson)
+  * [Download](#download)
+  * [Usage](#usage)
+    + [SweepWrapper](#sweepwrapper)
+      - [Nested Wrapping](#nested-wrapping)
+      - [Custom/Default Wrapping](#customdefault-wrapping)
+    + [SweepUnwrapper](#sweepunwrapper)
+      - [Nested Unwrapping](#nested-unwrapping)
+      - [Custom/Default Unwrapping](#customdefault-unwrapping)
+      - [startsWith/endsWith](#startswithendswith)
+    + [Hooks](#hooks)
+  * [Sample](#sample)
+  * [Limitations](#limitations)
+  
 ## Download
+
+Gradle:
+```groovy
+dependencies {
+  implementation 'io.saeid.sweep:sweep-gson:1.0.0'
+}
+```
 
 ## Usage
 
@@ -148,9 +169,9 @@ If you want to disable force mode for a specific type, you can easily pass `null
 
 __Note:__ By default `@SweepUnwrapper` will switch to the `defaultUnwrapper`, If you don't pass any value. 
 
-#### startsWith/endsWith supprot
+#### startsWith/endsWith
 
-`@SweepUnwrapper` also supports a simple starts/ends with regex.
+`@SweepUnwrapper` also supports a simple starts/ends-With regex.
 
 - `@SweepUnwrapper("*Response")` It will unwrap everything ends with `Response`, e.g. `singleResponse`
 - `@SweepUnwrapper("response*")` It will unwrap everything starts with `response`, e.g. `responseValue`

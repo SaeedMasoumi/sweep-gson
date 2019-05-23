@@ -9,7 +9,7 @@ import io.saeid.sweep.gson.unwrapper.DefaultUnwrapper
  * By default, It will use the value from [USE_DEFAULT_WRAPPER], which means it will detect the name from
  * [DefaultWrapper].
  *
- * This annotation also support nested wrapping using dot as delimiter (e.g. "a.b.c").
+ * This annotation also supports nested wrapping using dot as delimiter (e.g. "a.b.c").
  *
  * Here are some examples of how this annotation is meant to be used:
  *
@@ -45,7 +45,7 @@ annotation class SweepWrapper(val value: String = USE_DEFAULT_WRAPPER)
  * By default, It will use the value from [USE_DEFAULT_UNWRAPPER], which means it will detect the name from
  * [DefaultUnwrapper].
  *
- * This annotation also support nested unwrapping using dot as delimiter (e.g. "a.b.c").
+ * This annotation also supports nested unwrapping using dot as delimiter (e.g. "a.b.c").
  *
  * Here are some examples of how this annotation is meant to be used:
  *

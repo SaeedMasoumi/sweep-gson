@@ -40,4 +40,5 @@ jobs:
 
     # run tests!
     - run: gradle test jacocoTestReport
+    - run: gradle bintrayUpload
     - run: bash <(curl -s https://codecov.io/bash)
