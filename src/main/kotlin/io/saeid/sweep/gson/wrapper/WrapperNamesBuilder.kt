@@ -50,7 +50,7 @@ internal class WrapperNamesBuilder(private val defaultWrapper: DefaultWrapper) {
 
     private fun <T> applyClassNameWrapper(value: T, names: List<String>): List<String> {
         return names.map {
-            return@map when (it) {
+            when (it) {
                 USE_CLASS_NAME_WRAPPER -> {
                     SweepReflection.findClassName(value).decapitalize()
                 }
