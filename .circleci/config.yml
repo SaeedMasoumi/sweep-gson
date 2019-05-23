@@ -6,29 +6,20 @@ version: 2
 jobs:
   build:
     docker:
-    # specify the version you desire here
     - image: circleci/openjdk:8-jdk
-
-    # Specify service dependencies here if necessary
-    # CircleCI maintains a library of pre-built images
-    # documented at https://circleci.com/docs/2.0/circleci-images/
-    # - image: circleci/postgres:9.4
 
     working_directory: ~/repo
 
     environment:
-      # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
       TERM: dumb
 
     steps:
     - checkout
 
-    # Download and cache dependencies
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "build.gradle" }}
-        # fallback to using the latest cache if no exact match is found
         - v1-dependencies-
 
     - run: gradle dependencies
@@ -38,7 +29,17 @@ jobs:
         - ~/.gradle
         key: v1-dependencies-{{ checksum "build.gradle" }}
 
-    # run tests!
-    - run: gradle test jacocoTestReport
+    - run :
+        name: Run tests
+        command : |
+          gradle test jacocoTestReport
+          bash <(curl -s https://codecov.io/bash)
+
     - run: gradle bintrayUpload
-    - run: bash <(curl -s https://codecov.io/bash)
+
+    post-steps:
+      name: Upload artifacts to Jcenter
+      - run:
+        command: gradle bintrayUpload
+
+

@@ -46,7 +46,7 @@ GsonBuilder().withSweep {
 
 ### SweepWrapper
 
-Use `@SweepWrapper` annotation to wrap the object with your desire value during serialization.
+Use `@SweepWrapper` annotation to wrap the object with your desired value during serialization.
 
 ```kotlin
 @SweepWrapper("request")
@@ -67,7 +67,7 @@ The output after serializing the above class:
 
 `@SweepWrapper` also supports nested wrapping using dot as delimiter:
 
-For instance, If you replace the value in the above example to` @SweepWrapper("request.data")`, It will generates:
+For instance, If you replace the value in the above example to` @SweepWrapper("request.data")`, It will generate:
 
 ```json
 {
@@ -113,7 +113,7 @@ __Note:__ By default `@SweepWrapper` will switch to the `defaultWrapper`, If you
 
 ### SweepUnwrapper
 
-Use `@SweepUnwrapper` annotation to unwrap the object with your desire value during deserialization. Unlike `@SweepWrapper`, `@SweepUnwrapper` only works on the root object.
+Use `@SweepUnwrapper` annotation to unwrap the object with your desired value during deserialization. Unlike `@SweepWrapper`, `@SweepUnwrapper` only works on the root object.
 
 ```json
 {
@@ -123,7 +123,7 @@ Use `@SweepUnwrapper` annotation to unwrap the object with your desire value dur
 }
 ```
 
-For instance, The above JSON can be deserialized to the below class:
+For instance, The above JSON can be deserialized to the class below:
 
 ```kotlin
 @SweepWrapper("response")
@@ -134,7 +134,7 @@ data class Response(val name : String)
 
 `@SweepUnwrapper` also supports nested unwrapping using dot as delimiter:
 
-For instance, If you replace the value in the above example to` @SweepUnwrapper("response.body")`, It can be extracted by the below JSON:
+For instance, If you replace the value in the above example to` @SweepUnwrapper("response.body")`, It can be extracted by the JSON below:
 
 ```json
 {
@@ -204,7 +204,7 @@ It will adds `properties` to the root classes annotated with `SweepWrapper`.
 
 ## Sample
 
-Assume that you have REST API with the below request/response template:
+Assume that you have an REST API with the request/response template below:
 ```js
 // request
 {
@@ -314,4 +314,4 @@ data class Child(val name : String)
 ```
 
 - `addToRoot` only works If the root class is annotated with `SweepWrapper`.
-- Unlike `SweepUnwrapper`, There is no force mode available for `SweepWrapper`.
+- Unlike `SweepUnwrapper`, there is no force mode available for `SweepWrapper`.
