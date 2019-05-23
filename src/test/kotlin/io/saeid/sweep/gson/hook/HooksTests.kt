@@ -6,7 +6,6 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import io.saeid.sweep.gson.*
 import io.saeid.sweep.gson.SweepReflection.sweepWrapperValue
-import io.saeid.sweep.gson.createDefaultWrapper
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

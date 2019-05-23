@@ -6,7 +6,6 @@ import io.mockk.every
 import io.mockk.mockkStatic
 import io.saeid.sweep.gson.*
 import io.saeid.sweep.gson.SweepReflection.sweepWrapperValue
-import io.saeid.sweep.gson.createDefaultWrapper
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -58,7 +57,8 @@ class WrapperTests {
                 createDefaultWrapper("request.$USE_CLASS_NAME_WRAPPER.reply")
         }.create()
 
-        assertSerialized("""{"request":{"child":{"reply":{"name":"sweep"}}}}""", mockChild,
+        assertSerialized(
+            """{"request":{"child":{"reply":{"name":"sweep"}}}}""", mockChild,
             USE_DEFAULT_WRAPPER
         )
     }

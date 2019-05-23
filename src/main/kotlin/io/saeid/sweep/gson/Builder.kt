@@ -14,7 +14,7 @@ class Builder internal constructor(private val gsonBuilder: GsonBuilder) {
     }
 
     private val disabledUnwrapper = object : DefaultUnwrapper {
-        override fun <T> find(type: Class<T>): String? = null
+        override fun <T> unwrapWith(type: Class<T>): String? = null
     }
 
     private val disabledHooks = object : Hooks {}
