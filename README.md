@@ -1,5 +1,6 @@
 # Sweep Gson 
 [![CircleCI](https://circleci.com/gh/SaeedMasoumi/sweep-gson.svg?style=svg)](https://circleci.com/gh/SaeedMasoumi/sweep-gson) [![codecov](https://codecov.io/gh/SaeedMasoumi/sweep-gson/branch/master/graph/badge.svg)](https://codecov.io/gh/SaeedMasoumi/sweep-gson)
+ [ ![Download](https://api.bintray.com/packages/smasoumi/maven/sweep-gson/images/download.svg) ](https://bintray.com/smasoumi/maven/sweep-gson/_latestVersion)
 
 A wrapper/unwrapper extension for Gson
 
@@ -22,7 +23,7 @@ A wrapper/unwrapper extension for Gson
 Gradle:
 ```groovy
 dependencies {
-  implementation 'io.saeid.sweep:sweep-gson:1.0.0'
+  implementation 'io.saeid.sweep:sweep-gson:0.5.0'
 }
 ```
 
