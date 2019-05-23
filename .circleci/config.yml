@@ -34,14 +34,3 @@ jobs:
         command : |
           gradle test jacocoTestReport
           bash <(curl -s https://codecov.io/bash)
-
-    - run: gradle bintrayUpload
-
-    post-steps:
-      - run:
-        name: Upload artifacts to Jcenter
-        command: |
-          set +e
-          gradle bintrayUpload
-
-

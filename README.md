@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/SaeedMasoumi/sweep-gson.svg?style=svg)](https://circleci.com/gh/SaeedMasoumi/sweep-gson) [![codecov](https://codecov.io/gh/SaeedMasoumi/sweep-gson/branch/master/graph/badge.svg)](https://codecov.io/gh/SaeedMasoumi/sweep-gson)
  [ ![Download](https://api.bintray.com/packages/smasoumi/maven/sweep-gson/images/download.svg) ](https://bintray.com/smasoumi/maven/sweep-gson/_latestVersion)
 
-A wrapper/unwrapper extension for Gson
+__Sweep Gson__ adds (un)wrapping functionality to Gson without modifying any existing behavior.
 
 - [Sweep Gson](#sweep-gson)
   * [Download](#download)
@@ -23,7 +23,7 @@ A wrapper/unwrapper extension for Gson
 Gradle:
 ```groovy
 dependencies {
-  implementation 'io.saeid.sweep:sweep-gson:0.5.0'
+  implementation 'io.saeid.sweep:sweep-gson:1.0.0'
 }
 ```
 
@@ -34,7 +34,7 @@ dependencies {
 GsonBuilder().withSweep().create()
 ```
 
-If you want more advance features:
+If you need more advance features:
 
 ```kotlin
 GsonBuilder().withSweep {
@@ -242,14 +242,14 @@ Then we create our Gson instance using `withSweep`:
     GsonBuilder().withSweep {
         // tell sweep gson to unwrap every object that match `response.*Reply`
         defaultUnwrapper = object : DefaultUnwrapper {
-            override fun <T> unwrapWith(type: Class<T>): String? = "response.[the member that ends with Reply]"
+            override fun <T> unwrapWith(type: Class<T>): String? = "response.*Reply"
             override fun force(): Boolean = true
         }
         // tell sweep gson to wrap every annotated object with `request.[the class name of that object]`        
         defaultWrapper = object : DefaultWrapper {
             override fun <T> wrapWith(value: T): String = "request.$USE_CLASS_NAME_WRAPPER"
         }
-        // also add Properties to the root our objects during serialization
+        // add Properties to the root of our objects during serialization
         hooks = object : Hooks {
             override fun <T> addToRoot(value: T): Pair<String, Any>? {
                 return Pair("properties", Properties("Android"))
