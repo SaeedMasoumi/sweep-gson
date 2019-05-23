@@ -2,6 +2,7 @@ package io.saeid.sweep.gson.unwrapper
 
 import com.google.gson.Gson
 import com.google.gson.JsonElement
+import com.google.gson.JsonObject
 import com.google.gson.TypeAdapter
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
@@ -29,7 +30,8 @@ internal class UnwrapperTypeAdapter<T>(
         var currentElement = original
         names.forEach {
             if (hasMember(currentElement, it)) {
-                currentElement = currentElement.asJsonObject.getAsJsonObject(it)
+                val jsonObject = currentElement.asJsonObject
+                currentElement = jsonObject.get(getMember(jsonObject, it))
             } else {
                 return original
             }
@@ -53,6 +55,22 @@ internal class UnwrapperTypeAdapter<T>(
             }
             else -> {
                 jsonObject.has(member)
+            }
+        }
+    }
+
+    private fun getMember(jsonObject: JsonObject, member: String): String {
+        return when {
+            member.startsWith("*") -> {
+                val endsWithValue = member.substring(1)
+                jsonObject.keySet().first { it.endsWith(endsWithValue) }
+            }
+            member.endsWith("*") -> {
+                val startsWithValue = member.substring(0, member.length - 2)
+                jsonObject.keySet().first { it.startsWith(startsWithValue) }
+            }
+            else -> {
+                member
             }
         }
     }

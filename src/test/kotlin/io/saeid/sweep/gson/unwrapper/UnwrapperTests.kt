@@ -135,6 +135,19 @@ class UnwrapperTests {
         }
     }
 
+    @Test
+    fun `verify regex unwrapping`() {
+        every { defaultUnwrapper.force() } returns false
+
+        deserialized<Child>("""{ "singleReply": { "name": "child" } }""", "*Reply").apply {
+            assertEquals("child", name)
+        }
+
+        deserialized<Child>("""{ "singleReply": { "name": "child" } }""", "single*").apply {
+            assertEquals("child", name)
+        }
+    }
+
     private inline fun <reified T> deserialized(json: String, sweepUnwrapperValue: String): T {
         every { sweepUnwrapperValue<T>(any()) } returns sweepUnwrapperValue
         return gson.fromJson(json, T::class.java)
