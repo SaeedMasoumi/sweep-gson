@@ -262,11 +262,11 @@ And now the result:
 
 ```kotlin
 gson.toJson(Login("admin", "admin")) 
-// will prints 
+// prints 
 // {"properties":{"device":"Android"},"request":{"login":{"userName":"admin","password":"admin"}}}
 
 gson.fromJson<User>("""{ "response": { "userReply": { "name":"admin" } } }""", User::class.java)
-// will prints
+// prints
 // User(name=admin)
 ```
 ## Limitations
